@@ -1,4 +1,4 @@
-name: Deploy static site
+name: Deploy marketing web
 
 on:
   push:
@@ -20,9 +20,9 @@ jobs:
 
       - name: Deploy via SSM
         run: |
-         aws ssm send-command \
-           --instance-ids "${{ secrets.EC2_INSTANCE_ID }}" \
-           --document-name "AWS-RunShellScript" \
-           --parameters commands='[
-             "/usr/local/bin/deploy_site.sh marketing-web https://github.com/JBits-Technology/my-marketing-web.git main"
-              ]'
+          aws ssm send-command \
+            --instance-ids "${{ secrets.EC2_INSTANCE_ID }}" \
+            --document-name "AWS-RunShellScript" \
+            --parameters commands='[
+              "/usr/local/bin/deploy_site.sh marketing-web https://github.com/JBits-Technology/marketing-web.git main"
+            ]'
